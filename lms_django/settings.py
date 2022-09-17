@@ -65,7 +65,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 Cors_allowed_path = [
     "*",
-    "getBooks"
+    "getBooks",
+    "updateBook",
+    "deleteBook"
 ]
 
 ROOT_URLCONF = 'lms_django.urls'

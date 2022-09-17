@@ -8,3 +8,9 @@ class Book(models.Model):
     isbn = models.CharField(max_length=255, primary_key=True)
     publishyear = models.IntegerField()
     genre = models.CharField(max_length=255)
+
+
+class Admin(models.Model):
+    Admin_Name = models.CharField(max_length=255)
+    Email_id = models.CharField(max_length=255)
+    passwords = models.CharField(max_length=255)

@@ -1,6 +1,14 @@
-from base.models import Book
+from base.models import Book,Admin
 
 
+# def getAdmins(db):
+#     mycursor = db.cursor()
+#     mycursor.execute("select * from library.admins")
+#     result = mycursor.fetchall()
+#     admins = []
+#     for i in result:
+#         admins.append(Admin(Admin_Name=i[0],Email_id=i[1],passwords = i[2]))
+#         return admins
 def get_all_books(db):
     mycursor = db.cursor()
     mycursor.execute("SELECT * FROM library.books")
@@ -29,7 +37,7 @@ def insertBook(db, book):
 
     sql = "insert into books values ( '" + book["isbn"] + "','" + book["title"] + "','" + book["author"] + "','" + book[
         "publisher"] + "'," + str(book["publishyear"]) + ",'" + book["genre"] + "');"
-    print(sql);
+    print(sql)
     mycursor.execute(sql)
     db.commit()
     if mycursor.rowcount != 0:
@@ -38,6 +46,19 @@ def insertBook(db, book):
         return "Invalid Data"
 
 
-# def updateBook(db, data):
-#
-#     return None
+def updateBook(db, book):
+    deleteBook(db,book["isbn"])
+    insertBook(db,book)
+    print('Update Called')
+    return "Book Updated"
+    # mycursor = db.cursor()
+    # sql = "DELETE FROM books WHERE isbn = " + isbn
+    # sql1 = "insert into books values ( '" + book["isbn"] + "','" + book["title"] + "','" + book["author"] + "','" + book[
+    #     "publisher"] + "'," + str(book["publishyear"]) + ",'" + book["genre"] + "');"
+    # print(sql);
+    # mycursor.execute(sql,sql1)
+    # db.commit()
+    # if mycursor.rowcount != 0:
+    #     return "Book Updated"
+    # else:
+    #     return "Invalid Data"
